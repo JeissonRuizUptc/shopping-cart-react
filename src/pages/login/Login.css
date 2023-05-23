@@ -1,0 +1,26 @@
+.Login{
+    width: 100%;
+    height: 92vh;
+    display: flex;
+    flex-direction: row;
+    background-color: #E4DCCF;
+}
+
+.Login-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+}
+
+.Login-image{
+    width: 50%;
+    height: 100vh;
+}
+
+.Login-image img{
+    width: 100vh;
+    height: 100vh;
+}
