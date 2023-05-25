@@ -17,7 +17,7 @@ const FormLogin = () => {
 
 
 
-    const onSubmit = async(e) => {
+    const onSubmit = async() => {
         //e.preventDefault();
         var txtusu = document.getElementById("txtusu").value;
         var txtpas = document.getElementById("txtpas").value;
@@ -30,9 +30,9 @@ const FormLogin = () => {
 
             
         } else {
+            alert("Bienvenido " + txtusu);
             setLogin("false");
             GenericGet();
-            alert("Usuario o contraseña incorrectos");
         }
     }
 
@@ -81,7 +81,7 @@ const FormLogin = () => {
                     </Link>
                    
                 </div>
-                <Link to={'/register'}>
+                <Link to={'/Register'}>
                     <a href="">Registrarse</a>
                 </Link>
                 <a href="">Olvide mi contraseña</a>

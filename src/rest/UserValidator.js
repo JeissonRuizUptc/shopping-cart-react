@@ -17,22 +17,31 @@ const validateStatusCode = (statusCode) => {
     }
   };
 
-const userValidator = async (username, password) => {
-    const data = {
-      email: username,
-      password: password
-    };
-
-    try {
-      const response = await axios.post('http://localhost:8000/users/login', data);
-      const statusCode = response.status;
-      console.log('Status code: ', statusCode);     
-      return validateStatusCode(statusCode);
-    } catch (error) {
-      console.error('Ocurrió un error al realizar la petición', error);
-      // Realiza alguna acción en caso de error
-      return false
-    }
+  function userValidator(userName, dPassword) {
+    const url = "http://localhost:8000/users/login"
+    const data = { email: userName , password: dPassword };
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data) // Cuerpo de
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error en la petición POST: " + response.status);
+        }
+        console.log(response.status);
+        return response.status;
+        
+      })
+      .then(responseData => {
+        // Aquí puedes hacer algo con los datos de respuesta
+        console.log(responseData);
+      })
+      .catch(error => {
+        console.error("Error en la petición POST:", error);
+      });
   }
 
   function GenericGet() {
