@@ -3,6 +3,7 @@ import './FormLogin.css';
 import tortuga from '../assets/fonts/login.png';
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { userValidator, GenericGet} from "../rest/UserValidator";
 
 const FormLogin = () => {
 
@@ -16,12 +17,23 @@ const FormLogin = () => {
 
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         //e.preventDefault();
         var txtusu = document.getElementById("txtusu").value;
         var txtpas = document.getElementById("txtpas").value;
-        console.log(txtusu + " ok")
+        var  resultado = await  userValidator(txtusu, txtpas);
+        if (resultado == true) {
+            setLogin("true");
+            alert("Bienvenido " + txtusu);
+            GenericGet();
+           //redirect to shop if login is true
 
+            
+        } else {
+            setLogin("false");
+            GenericGet();
+            alert("Usuario o contraseña incorrectos");
+        }
     }
 
     return (
@@ -67,7 +79,7 @@ const FormLogin = () => {
                     <Link to={'/Shop'}>
                         <input type="submit" name="submit" className="btn btn-secondary" value="Enviar" onClick={onSubmit} />
                     </Link>
-                    
+                   
                 </div>
                 <Link to={'/register'}>
                     <a href="">Registrarse</a>
